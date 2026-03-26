@@ -1,0 +1,18 @@
+import os
+import sys
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+# Replace YOURUSERNAME and REPOSITORY_NAME before using this file on PythonAnywhere.
+PROJECT_ROOT = Path("/home/YOURUSERNAME/REPOSITORY_NAME/backend")
+
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+load_dotenv(PROJECT_ROOT / ".env")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
+
+from django.core.wsgi import get_wsgi_application
+
+application = get_wsgi_application()
