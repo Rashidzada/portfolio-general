@@ -322,15 +322,15 @@ export function DashboardPage() {
     : isSaving
     ? 'Saving your changes...'
     : ''
-  const dashboardCardClass = 'glass-card rounded-[1.75rem] p-5 sm:rounded-[2rem] sm:p-8'
-  const utilityCardClass = 'rounded-[1.25rem] border border-[var(--line)] p-4 sm:rounded-[1.5rem] sm:p-5'
+  const dashboardCardClass = 'glass-card rounded-[1.5rem] p-4 sm:rounded-[2rem] sm:p-8'
+  const utilityCardClass = 'rounded-[1rem] border border-[var(--line)] p-3.5 sm:rounded-[1.5rem] sm:p-5'
 
   return (
     <DashboardLayout username={user.username}>
       {busyLabel ? <LoadingOverlay label={busyLabel} /> : null}
       <ToastStack notices={toasts} onDismiss={dismissToast} />
-      <div className="shell grid gap-6 sm:gap-8">
-        <section className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-6">
+      <div className="mx-auto grid w-full max-w-7xl gap-4 px-4 sm:gap-8 sm:px-6 lg:px-8">
+        <section className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-6">
           <StatCard label="Projects" value={overview.counts.projects || 0} />
           <StatCard label="Skills" value={overview.counts.skills || 0} />
           <StatCard label="Services" value={overview.counts.services || 0} />
@@ -339,17 +339,17 @@ export function DashboardPage() {
           <StatCard label="Sections" value={overview.counts.content_sections || 0} />
         </section>
 
-        <section className="grid gap-5 sm:gap-6 xl:grid-cols-[1.05fr_0.95fr]">
+        <section className="grid gap-4 sm:gap-6 xl:grid-cols-[1.05fr_0.95fr]">
           <div className={dashboardCardClass}>
-            <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Dashboard Summary</p>
-            <h2 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+            <p className="text-xs uppercase tracking-[0.14em] text-[var(--muted)] sm:text-sm sm:tracking-[0.18em]">Dashboard Summary</p>
+            <h2 className="mt-3 text-xl font-semibold tracking-tight sm:mt-4 sm:text-3xl">
               {overview.profile?.full_name || 'Primary profile not configured'}
             </h2>
-            <p className="mt-4 text-sm leading-7 text-[var(--muted)] sm:text-base sm:leading-8">
+            <p className="mt-3 text-sm leading-6 text-[var(--muted)] sm:mt-4 sm:text-base sm:leading-8">
               Manage the entire portfolio here in React: profile, section copy, site settings, links, skills, services, projects, media, education, experience, achievements, gallery, and messages.
             </p>
 
-            <div className="mt-6 grid gap-4 sm:mt-8 md:grid-cols-2">
+            <div className="mt-5 grid gap-3 sm:mt-8 sm:gap-4 md:grid-cols-2">
               <button
                 type="button"
                 onClick={() => {
@@ -406,9 +406,9 @@ export function DashboardPage() {
           <div className={dashboardCardClass}>
             <div className="flex items-center gap-3">
               <MessageSquareText size={20} className="text-[var(--accent-strong)]" />
-              <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Recent Messages</p>
+              <p className="text-xs uppercase tracking-[0.14em] text-[var(--muted)] sm:text-sm sm:tracking-[0.18em]">Recent Messages</p>
             </div>
-            <div className="mt-6 grid gap-4">
+            <div className="mt-5 grid gap-3 sm:mt-6 sm:gap-4">
               {overview.recent_messages.length ? (
                 overview.recent_messages.map((message) => (
                   <article key={message.id} className={utilityCardClass}>
@@ -432,33 +432,33 @@ export function DashboardPage() {
           </div>
         </section>
 
-        <section className="grid gap-5 sm:gap-6 xl:grid-cols-[0.34fr_0.66fr]">
-          <aside className="grid gap-5 sm:gap-6">
-            <div className="glass-card rounded-[1.75rem] p-5 sm:rounded-[2rem] sm:p-6">
-              <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Content Sections</p>
-              <div className="mt-5 flex gap-3 overflow-x-auto pb-1 md:grid md:overflow-visible md:pb-0">
+        <section className="grid gap-4 sm:gap-6 xl:grid-cols-[0.34fr_0.66fr]">
+          <aside className="grid gap-4 sm:gap-6">
+            <div className="glass-card rounded-[1.5rem] p-4 sm:rounded-[2rem] sm:p-6">
+              <p className="text-xs uppercase tracking-[0.14em] text-[var(--muted)] sm:text-sm sm:tracking-[0.18em]">Content Sections</p>
+              <div className="mt-4 grid grid-cols-2 gap-2.5 sm:mt-5 sm:grid-cols-3 sm:gap-3 xl:grid-cols-1">
                 {DASHBOARD_RESOURCES.map((resource) => (
                   <button
                     key={resource.key}
                     type="button"
                     onClick={() => handleResourceChange(resource.key)}
-                    className={`shrink-0 whitespace-nowrap rounded-[1.25rem] px-4 py-3 text-left text-sm font-medium transition md:w-full md:whitespace-normal ${
+                    className={`min-w-0 rounded-[1rem] px-3 py-3 text-left text-sm font-medium leading-5 transition sm:rounded-[1.25rem] sm:px-4 ${
                       activeResource.key === resource.key
                         ? 'bg-[var(--foreground)] text-[var(--background)]'
                         : 'border border-[var(--line)] text-[var(--muted)]'
                     }`}
                   >
-                    {resource.label}
+                    <span className="block break-words">{resource.label}</span>
                   </button>
                 ))}
               </div>
             </div>
 
-            <div className="glass-card rounded-[1.75rem] p-5 sm:rounded-[2rem] sm:p-6">
+            <div className="glass-card rounded-[1.5rem] p-4 sm:rounded-[2rem] sm:p-6">
               <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="min-w-0">
-                  <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">{activeResource.label}</p>
-                  <p className="mt-1 text-xl font-semibold tracking-tight">{activeItems.length} items</p>
+                  <p className="text-xs uppercase tracking-[0.14em] text-[var(--muted)] sm:text-sm sm:tracking-[0.18em]">{activeResource.label}</p>
+                  <p className="mt-1 text-lg font-semibold tracking-tight sm:text-xl">{activeItems.length} items</p>
                 </div>
                 {activeResource.allowCreate !== false ? (
                   <button
@@ -471,20 +471,20 @@ export function DashboardPage() {
                 ) : null}
               </div>
 
-              <div className="mt-5 grid gap-3 xl:max-h-[48rem] xl:overflow-y-auto xl:pr-1">
+              <div className="mt-4 grid gap-3 sm:mt-5 xl:max-h-[48rem] xl:overflow-y-auto xl:pr-1">
                 {activeItems.length ? (
                   activeItems.map((item) => (
                     <button
                       key={String(item.id)}
                       type="button"
                       onClick={() => handleSelectItem(item)}
-                      className={`min-w-0 rounded-[1.25rem] border px-4 py-4 text-left transition ${
+                      className={`min-w-0 rounded-[1rem] border px-3.5 py-3.5 text-left transition sm:rounded-[1.25rem] sm:px-4 sm:py-4 ${
                         selectedItem?.id === item.id
                           ? 'border-transparent bg-[var(--accent-soft)]'
                           : 'border-[var(--line)]'
                       }`}
                     >
-                      <p className="break-words font-semibold">{dashboardItemTitle(item, activeResource)}</p>
+                      <p className="break-words text-sm font-semibold sm:text-base">{dashboardItemTitle(item, activeResource)}</p>
                       {dashboardItemDescription(item, activeResource) ? (
                         <p className="mt-2 line-clamp-2 break-words text-sm leading-6 text-[var(--muted)]">
                           {dashboardItemDescription(item, activeResource)}

@@ -20,10 +20,12 @@ export function DashboardLayout({
   return (
     <div className="min-h-screen overflow-x-hidden">
       <header className="border-b border-[var(--line)] bg-[var(--background-soft)]/90 backdrop-blur-xl">
-        <div className="shell flex flex-col gap-4 py-4 sm:py-5 md:flex-row md:items-center md:justify-between">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 sm:py-5 md:flex-row md:items-center md:justify-between lg:px-8">
           <div className="min-w-0">
-            <p className="text-sm uppercase tracking-[0.2em] text-[var(--muted)]">Hidden Admin Dashboard</p>
-            <h1 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">Portfolio Control Room</h1>
+            <p className="text-xs uppercase tracking-[0.16em] text-[var(--muted)] sm:text-sm sm:tracking-[0.2em]">
+              Hidden Admin Dashboard
+            </p>
+            <h1 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl lg:text-3xl">Portfolio Control Room</h1>
           </div>
           <div className="grid w-full gap-3 sm:flex sm:flex-wrap sm:items-center md:w-auto">
             <span className="rounded-full border border-[var(--line)] px-4 py-2 text-center text-sm text-[var(--muted)] sm:text-left">
@@ -45,7 +47,7 @@ export function DashboardLayout({
           </div>
         </div>
       </header>
-      <main className="section-space">{children}</main>
+      <main className="py-6 sm:py-8 lg:py-10">{children}</main>
     </div>
   )
 }

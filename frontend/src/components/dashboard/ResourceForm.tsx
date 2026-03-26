@@ -54,14 +54,14 @@ export function ResourceForm({
           placeholder={field.placeholder}
           rows={field.rows || 5}
           readOnly={field.readOnly}
-          className="w-full resize-y rounded-[1.25rem] border border-[var(--line)] bg-transparent px-4 py-3 text-sm outline-none sm:text-base"
+          className="w-full resize-y rounded-[1rem] border border-[var(--line)] bg-transparent px-3.5 py-3 text-sm outline-none sm:rounded-[1.25rem] sm:px-4 sm:text-base"
         />
       )
     }
 
     if (field.type === 'checkbox') {
       return (
-        <label key={field.name} className="flex items-center gap-3 rounded-[1.25rem] border border-[var(--line)] px-4 py-3">
+        <label key={field.name} className="flex items-center gap-3 rounded-[1rem] border border-[var(--line)] px-3.5 py-3 sm:rounded-[1.25rem] sm:px-4">
           <input
             type="checkbox"
             checked={Boolean(value)}
@@ -82,7 +82,7 @@ export function ResourceForm({
           value={String(value ?? '')}
           onChange={(event) => onFieldChange(field.name, event.target.value)}
           disabled={field.readOnly}
-          className="w-full rounded-[1.25rem] border border-[var(--line)] bg-transparent px-4 py-3 text-sm outline-none sm:text-base"
+          className="w-full rounded-[1rem] border border-[var(--line)] bg-transparent px-3.5 py-3 text-sm outline-none sm:rounded-[1.25rem] sm:px-4 sm:text-base"
         >
           <option value="">Select {field.label}</option>
           {options.map((option) => (
@@ -96,7 +96,7 @@ export function ResourceForm({
 
     if (field.type === 'file') {
       return (
-        <div key={field.name} className="rounded-[1.25rem] border border-[var(--line)] px-4 py-3">
+        <div key={field.name} className="rounded-[1rem] border border-[var(--line)] px-3.5 py-3 sm:rounded-[1.25rem] sm:px-4">
           <input
             type="file"
             accept={field.accept}
@@ -128,19 +128,19 @@ export function ResourceForm({
         onChange={(event) => onFieldChange(field.name, event.target.value)}
         placeholder={field.placeholder}
         readOnly={field.readOnly}
-        className="w-full rounded-[1.25rem] border border-[var(--line)] bg-transparent px-4 py-3 text-sm outline-none sm:text-base"
+        className="w-full rounded-[1rem] border border-[var(--line)] bg-transparent px-3.5 py-3 text-sm outline-none sm:rounded-[1.25rem] sm:px-4 sm:text-base"
       />
     )
   }
 
   return (
-    <form onSubmit={onSubmit} className="glass-card rounded-[1.75rem] p-5 sm:rounded-[2rem] sm:p-8">
+    <form onSubmit={onSubmit} className="glass-card rounded-[1.5rem] p-4 sm:rounded-[2rem] sm:p-8">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
-          <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">
+          <p className="text-xs uppercase tracking-[0.14em] text-[var(--muted)] sm:text-sm sm:tracking-[0.18em]">
             {selectedItem?.id ? `Edit ${resource.singular}` : `Create ${resource.singular}`}
           </p>
-          <h2 className="mt-2 break-words text-2xl font-semibold tracking-tight sm:text-3xl">{resource.label}</h2>
+          <h2 className="mt-2 break-words text-xl font-semibold tracking-tight sm:text-3xl">{resource.label}</h2>
         </div>
         {selectedItem?.id && resource.allowDelete !== false ? (
           <button
@@ -153,7 +153,7 @@ export function ResourceForm({
         ) : null}
       </div>
 
-      <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-5 md:grid-cols-2">
+      <div className="mt-5 grid gap-3 sm:mt-8 sm:gap-5 md:grid-cols-2">
         {resource.fields.map((field) => (
           <div key={field.name} className={`min-w-0 ${isWideField(field) ? 'md:col-span-2' : ''}`}>
             <p className="mb-2 break-words text-sm font-medium text-[var(--muted)]">{field.label}</p>
@@ -165,7 +165,7 @@ export function ResourceForm({
 
       {error ? <p className="mt-6 text-sm text-red-500">{error}</p> : null}
 
-      <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
+      <div className="mt-5 flex flex-wrap gap-3 sm:mt-8">
         <button
           type="submit"
           disabled={isSaving}
