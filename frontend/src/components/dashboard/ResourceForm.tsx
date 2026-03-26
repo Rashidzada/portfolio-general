@@ -36,6 +36,10 @@ export function ResourceForm({
   isSaving: boolean
   error: string | null
 }) {
+  function isWideField(field: DashboardFieldConfig) {
+    return field.type === 'textarea' || field.type === 'list' || field.type === 'json' || field.type === 'file'
+  }
+
   function renderField(field: DashboardFieldConfig) {
     const value = values[field.name]
     const previewUrl =
@@ -50,7 +54,7 @@ export function ResourceForm({
           placeholder={field.placeholder}
           rows={field.rows || 5}
           readOnly={field.readOnly}
-          className="w-full rounded-[1.25rem] border border-[var(--line)] bg-transparent px-4 py-3 outline-none"
+          className="w-full resize-y rounded-[1.25rem] border border-[var(--line)] bg-transparent px-4 py-3 text-sm outline-none sm:text-base"
         />
       )
     }
@@ -78,7 +82,7 @@ export function ResourceForm({
           value={String(value ?? '')}
           onChange={(event) => onFieldChange(field.name, event.target.value)}
           disabled={field.readOnly}
-          className="w-full rounded-[1.25rem] border border-[var(--line)] bg-transparent px-4 py-3 outline-none"
+          className="w-full rounded-[1.25rem] border border-[var(--line)] bg-transparent px-4 py-3 text-sm outline-none sm:text-base"
         >
           <option value="">Select {field.label}</option>
           {options.map((option) => (
@@ -100,14 +104,14 @@ export function ResourceForm({
               onFieldChange(field.name, event.target.files?.[0] || null)
             }
             disabled={field.readOnly}
-            className="w-full"
+            className="w-full text-sm sm:text-base"
           />
           {previewUrl ? (
             <a
               href={previewUrl}
               target="_blank"
               rel="noreferrer"
-              className="mt-3 inline-block text-sm text-[var(--accent-strong)]"
+              className="mt-3 inline-block break-all text-sm text-[var(--accent-strong)]"
             >
               View current file
             </a>
@@ -124,48 +128,48 @@ export function ResourceForm({
         onChange={(event) => onFieldChange(field.name, event.target.value)}
         placeholder={field.placeholder}
         readOnly={field.readOnly}
-        className="w-full rounded-[1.25rem] border border-[var(--line)] bg-transparent px-4 py-3 outline-none"
+        className="w-full rounded-[1.25rem] border border-[var(--line)] bg-transparent px-4 py-3 text-sm outline-none sm:text-base"
       />
     )
   }
 
   return (
-    <form onSubmit={onSubmit} className="glass-card rounded-[2rem] p-8">
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div>
+    <form onSubmit={onSubmit} className="glass-card rounded-[1.75rem] p-5 sm:rounded-[2rem] sm:p-8">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div className="min-w-0">
           <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">
             {selectedItem?.id ? `Edit ${resource.singular}` : `Create ${resource.singular}`}
           </p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight">{resource.label}</h2>
+          <h2 className="mt-2 break-words text-2xl font-semibold tracking-tight sm:text-3xl">{resource.label}</h2>
         </div>
         {selectedItem?.id && resource.allowDelete !== false ? (
           <button
             type="button"
             onClick={onDelete}
-            className="rounded-full border border-red-300 px-4 py-2 text-sm font-semibold text-red-500"
+            className="inline-flex w-full items-center justify-center rounded-full border border-red-300 px-4 py-2 text-sm font-semibold text-red-500 sm:w-auto"
           >
             Delete
           </button>
         ) : null}
       </div>
 
-      <div className="mt-8 grid gap-5 md:grid-cols-2">
+      <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-5 md:grid-cols-2">
         {resource.fields.map((field) => (
-          <div key={field.name} className={field.type === 'textarea' || field.type === 'list' || field.type === 'json' || field.type === 'file' ? 'md:col-span-2' : ''}>
-            <p className="mb-2 text-sm font-medium text-[var(--muted)]">{field.label}</p>
+          <div key={field.name} className={`min-w-0 ${isWideField(field) ? 'md:col-span-2' : ''}`}>
+            <p className="mb-2 break-words text-sm font-medium text-[var(--muted)]">{field.label}</p>
             {renderField(field)}
-            {field.helperText ? <p className="mt-2 text-xs text-[var(--muted)]">{field.helperText}</p> : null}
+            {field.helperText ? <p className="mt-2 break-words text-xs text-[var(--muted)]">{field.helperText}</p> : null}
           </div>
         ))}
       </div>
 
       {error ? <p className="mt-6 text-sm text-red-500">{error}</p> : null}
 
-      <div className="mt-8 flex flex-wrap gap-3">
+      <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
         <button
           type="submit"
           disabled={isSaving}
-          className="rounded-full bg-[var(--foreground)] px-6 py-3 text-sm font-semibold text-[var(--background)] disabled:opacity-70"
+          className="w-full rounded-full bg-[var(--foreground)] px-6 py-3 text-sm font-semibold text-[var(--background)] disabled:opacity-70 sm:w-auto"
         >
           {isSaving ? 'Saving...' : 'Save Changes'}
         </button>

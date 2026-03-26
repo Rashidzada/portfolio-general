@@ -322,13 +322,15 @@ export function DashboardPage() {
     : isSaving
     ? 'Saving your changes...'
     : ''
+  const dashboardCardClass = 'glass-card rounded-[1.75rem] p-5 sm:rounded-[2rem] sm:p-8'
+  const utilityCardClass = 'rounded-[1.25rem] border border-[var(--line)] p-4 sm:rounded-[1.5rem] sm:p-5'
 
   return (
     <DashboardLayout username={user.username}>
       {busyLabel ? <LoadingOverlay label={busyLabel} /> : null}
       <ToastStack notices={toasts} onDismiss={dismissToast} />
-      <div className="shell grid gap-8">
-        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+      <div className="shell grid gap-6 sm:gap-8">
+        <section className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-6">
           <StatCard label="Projects" value={overview.counts.projects || 0} />
           <StatCard label="Skills" value={overview.counts.skills || 0} />
           <StatCard label="Services" value={overview.counts.services || 0} />
@@ -337,24 +339,24 @@ export function DashboardPage() {
           <StatCard label="Sections" value={overview.counts.content_sections || 0} />
         </section>
 
-        <section className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
-          <div className="glass-card rounded-[2rem] p-8">
+        <section className="grid gap-5 sm:gap-6 xl:grid-cols-[1.05fr_0.95fr]">
+          <div className={dashboardCardClass}>
             <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Dashboard Summary</p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight">
+            <h2 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
               {overview.profile?.full_name || 'Primary profile not configured'}
             </h2>
-            <p className="mt-4 text-base leading-8 text-[var(--muted)]">
+            <p className="mt-4 text-sm leading-7 text-[var(--muted)] sm:text-base sm:leading-8">
               Manage the entire portfolio here in React: profile, section copy, site settings, links, skills, services, projects, media, education, experience, achievements, gallery, and messages.
             </p>
 
-            <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <div className="mt-6 grid gap-4 sm:mt-8 md:grid-cols-2">
               <button
                 type="button"
                 onClick={() => {
                   void handleOpenDjangoAdmin()
                 }}
                 disabled={isOpeningAdmin}
-                className="rounded-[1.5rem] border border-[var(--line)] p-5"
+                className={`${utilityCardClass} text-left`}
               >
                 <div className="flex items-center gap-3">
                   <ShieldCheck size={20} className="text-[var(--accent-strong)]" />
@@ -367,7 +369,7 @@ export function DashboardPage() {
                 </p>
               </button>
 
-              <div className="rounded-[1.5rem] border border-[var(--line)] p-5">
+              <div className={utilityCardClass}>
                 <div className="flex items-center gap-3">
                   <LayoutPanelTop size={20} className="text-[var(--accent-strong)]" />
                   <p className="font-semibold">Resource Manager</p>
@@ -377,7 +379,7 @@ export function DashboardPage() {
                 </p>
               </div>
 
-              <div className="rounded-[1.5rem] border border-[var(--line)] p-5">
+              <div className={utilityCardClass}>
                 <div className="flex items-center gap-3">
                   <Database size={20} className="text-[var(--accent-strong)]" />
                   <p className="font-semibold">Uploads or Links</p>
@@ -387,7 +389,7 @@ export function DashboardPage() {
                 </p>
               </div>
 
-              <div className="rounded-[1.5rem] border border-[var(--line)] p-5">
+              <div className={utilityCardClass}>
                 <div className="flex items-center gap-3">
                   <MessageSquareText size={20} className="text-[var(--accent-strong)]" />
                   <p className="font-semibold">Inbox Preview</p>
@@ -401,7 +403,7 @@ export function DashboardPage() {
             </div>
           </div>
 
-          <div className="glass-card rounded-[2rem] p-8">
+          <div className={dashboardCardClass}>
             <div className="flex items-center gap-3">
               <MessageSquareText size={20} className="text-[var(--accent-strong)]" />
               <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Recent Messages</p>
@@ -409,18 +411,18 @@ export function DashboardPage() {
             <div className="mt-6 grid gap-4">
               {overview.recent_messages.length ? (
                 overview.recent_messages.map((message) => (
-                  <article key={message.id} className="rounded-[1.5rem] border border-[var(--line)] p-5">
-                    <div className="flex items-center justify-between gap-3">
-                      <div>
-                        <p className="font-semibold">{message.name}</p>
-                        <p className="text-sm text-[var(--muted)]">{message.email}</p>
+                  <article key={message.id} className={utilityCardClass}>
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                      <div className="min-w-0">
+                        <p className="break-words font-semibold">{message.name}</p>
+                        <p className="break-all text-sm text-[var(--muted)]">{message.email}</p>
                       </div>
-                      <span className="rounded-full bg-[var(--accent-soft)] px-3 py-1 text-xs uppercase tracking-[0.16em] text-[var(--accent-strong)]">
+                      <span className="inline-flex w-fit rounded-full bg-[var(--accent-soft)] px-3 py-1 text-xs uppercase tracking-[0.16em] text-[var(--accent-strong)]">
                         {message.service_interest || 'General'}
                       </span>
                     </div>
-                    <p className="mt-4 text-sm font-medium">{message.subject}</p>
-                    <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{message.message}</p>
+                    <p className="mt-4 break-words text-sm font-medium">{message.subject}</p>
+                    <p className="mt-2 break-words text-sm leading-7 text-[var(--muted)]">{message.message}</p>
                   </article>
                 ))
               ) : (
@@ -430,17 +432,17 @@ export function DashboardPage() {
           </div>
         </section>
 
-        <section className="grid gap-6 xl:grid-cols-[0.34fr_0.66fr]">
-          <aside className="grid gap-6">
-            <div className="glass-card rounded-[2rem] p-6">
+        <section className="grid gap-5 sm:gap-6 xl:grid-cols-[0.34fr_0.66fr]">
+          <aside className="grid gap-5 sm:gap-6">
+            <div className="glass-card rounded-[1.75rem] p-5 sm:rounded-[2rem] sm:p-6">
               <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Content Sections</p>
-              <div className="mt-5 grid gap-3">
+              <div className="mt-5 flex gap-3 overflow-x-auto pb-1 md:grid md:overflow-visible md:pb-0">
                 {DASHBOARD_RESOURCES.map((resource) => (
                   <button
                     key={resource.key}
                     type="button"
                     onClick={() => handleResourceChange(resource.key)}
-                    className={`rounded-[1.25rem] px-4 py-3 text-left text-sm font-medium transition ${
+                    className={`shrink-0 whitespace-nowrap rounded-[1.25rem] px-4 py-3 text-left text-sm font-medium transition md:w-full md:whitespace-normal ${
                       activeResource.key === resource.key
                         ? 'bg-[var(--foreground)] text-[var(--background)]'
                         : 'border border-[var(--line)] text-[var(--muted)]'
@@ -452,9 +454,9 @@ export function DashboardPage() {
               </div>
             </div>
 
-            <div className="glass-card rounded-[2rem] p-6">
-              <div className="flex items-center justify-between gap-3">
-                <div>
+            <div className="glass-card rounded-[1.75rem] p-5 sm:rounded-[2rem] sm:p-6">
+              <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="min-w-0">
                   <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">{activeResource.label}</p>
                   <p className="mt-1 text-xl font-semibold tracking-tight">{activeItems.length} items</p>
                 </div>
@@ -462,29 +464,29 @@ export function DashboardPage() {
                   <button
                     type="button"
                     onClick={handleCreateNew}
-                    className="rounded-full border border-[var(--line)] px-4 py-2 text-sm font-semibold"
+                    className="inline-flex w-full items-center justify-center rounded-full border border-[var(--line)] px-4 py-2 text-sm font-semibold sm:w-auto"
                   >
                     New
                   </button>
                 ) : null}
               </div>
 
-              <div className="mt-5 grid max-h-[48rem] gap-3 overflow-y-auto pr-1">
+              <div className="mt-5 grid gap-3 xl:max-h-[48rem] xl:overflow-y-auto xl:pr-1">
                 {activeItems.length ? (
                   activeItems.map((item) => (
                     <button
                       key={String(item.id)}
                       type="button"
                       onClick={() => handleSelectItem(item)}
-                      className={`rounded-[1.25rem] border px-4 py-4 text-left transition ${
+                      className={`min-w-0 rounded-[1.25rem] border px-4 py-4 text-left transition ${
                         selectedItem?.id === item.id
                           ? 'border-transparent bg-[var(--accent-soft)]'
                           : 'border-[var(--line)]'
                       }`}
                     >
-                      <p className="font-semibold">{dashboardItemTitle(item, activeResource)}</p>
+                      <p className="break-words font-semibold">{dashboardItemTitle(item, activeResource)}</p>
                       {dashboardItemDescription(item, activeResource) ? (
-                        <p className="mt-2 line-clamp-2 text-sm leading-6 text-[var(--muted)]">
+                        <p className="mt-2 line-clamp-2 break-words text-sm leading-6 text-[var(--muted)]">
                           {dashboardItemDescription(item, activeResource)}
                         </p>
                       ) : null}

@@ -6,9 +6,9 @@ export function StatCard({
   value: number
 }) {
   return (
-    <div className="glass-card rounded-[1.75rem] p-6">
-      <p className="text-sm uppercase tracking-[0.16em] text-[var(--muted)]">{label}</p>
-      <p className="mt-4 text-4xl font-semibold tracking-tight">{value}</p>
+    <div className="glass-card rounded-[1.5rem] p-5 sm:rounded-[1.75rem] sm:p-6">
+      <p className="text-xs uppercase tracking-[0.16em] text-[var(--muted)] sm:text-sm">{label}</p>
+      <p className="mt-3 text-3xl font-semibold tracking-tight sm:mt-4 sm:text-4xl">{value}</p>
     </div>
   )
 }
