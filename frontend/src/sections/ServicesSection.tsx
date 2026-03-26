@@ -44,7 +44,7 @@ export function ServicesSection({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ delay: index * 0.06 }}
-                className="glass-card rounded-[2rem] p-8"
+                className="glass-card rounded-[2rem] p-6 sm:p-8"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex h-14 w-14 items-center justify-center rounded-[1.5rem] bg-[var(--accent-soft)] text-[var(--accent-strong)]">

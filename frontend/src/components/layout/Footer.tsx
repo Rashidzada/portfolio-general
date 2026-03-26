@@ -11,14 +11,14 @@ export function Footer({
 }) {
   return (
     <footer className="border-t border-[var(--line)] py-10">
-      <div className="shell flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div>
+      <div className="shell flex flex-col gap-6 text-center md:flex-row md:items-center md:justify-between md:text-left">
+        <div className="mx-auto md:mx-0">
           <p className="font-display text-lg font-semibold">{siteSettings?.site_name || 'Developer Portfolio'}</p>
           <p className="mt-2 max-w-xl text-sm text-[var(--muted)]">
             {siteSettings?.footer_tagline || 'Production-ready software systems with a clean user experience.'}
           </p>
         </div>
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap justify-center gap-3 md:justify-end">
           {socialLinks.map((link) => (
             <a
               key={link.id}

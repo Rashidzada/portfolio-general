@@ -34,7 +34,7 @@ export function ExperienceEducationSection({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ delay: index * 0.05 }}
-                className="glass-card rounded-[2rem] p-8"
+                className="glass-card rounded-[2rem] p-6 sm:p-8"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
@@ -66,7 +66,7 @@ export function ExperienceEducationSection({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ delay: index * 0.05 }}
-                className="glass-card rounded-[2rem] p-8"
+                className="glass-card rounded-[2rem] p-6 sm:p-8"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>

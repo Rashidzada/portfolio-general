@@ -24,7 +24,7 @@ export function MainLayout({
   return (
     <div className="relative min-h-screen">
       <Navbar profile={profile} resume={resume} theme={theme} onToggleTheme={toggleTheme} />
-      <main>{children}</main>
+      <main className="pb-24 sm:pb-0">{children}</main>
       <Footer siteSettings={siteSettings} socialLinks={socialLinks} />
       <FloatingWhatsAppButton profile={profile} siteSettings={siteSettings} />
     </div>

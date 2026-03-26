@@ -43,7 +43,7 @@ export function AboutSection({
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="glass-card rounded-[2rem] p-8"
+            className="glass-card rounded-[2rem] p-6 sm:p-8"
           >
             <p className="text-lg leading-8 text-[var(--muted)]">{profile.professional_summary}</p>
             <p className="mt-6 text-base leading-8 text-[var(--muted)]">{profile.development_journey}</p>
@@ -57,7 +57,7 @@ export function AboutSection({
             transition={{ delay: 0.1 }}
             className="grid gap-6"
           >
-            <div className="glass-card rounded-[2rem] p-8">
+            <div className="glass-card rounded-[2rem] p-6 sm:p-8">
               <p className="text-sm uppercase tracking-[0.2em] text-[var(--muted)]">Core Strengths</p>
               <div className="mt-6 grid gap-4">
                 {profile.strengths.map((strength) => (
@@ -69,7 +69,7 @@ export function AboutSection({
               </div>
             </div>
 
-            <div className="glass-card rounded-[2rem] p-8">
+            <div className="glass-card rounded-[2rem] p-6 sm:p-8">
               <p className="text-sm uppercase tracking-[0.2em] text-[var(--muted)]">Positioning</p>
               <div className="mt-6 flex flex-wrap gap-3">
                 {positioningItems.map((item) => (

@@ -61,16 +61,16 @@ export function ProjectsSection({
               className="glass-card overflow-hidden rounded-[2rem]"
             >
               {project.thumbnail_source ? (
-                <img src={project.thumbnail_source} alt={project.title} className="h-72 w-full object-cover" />
+                <img src={project.thumbnail_source} alt={project.title} className="h-56 w-full object-cover sm:h-72" />
               ) : null}
 
-              <div className="p-8">
+              <div className="p-6 sm:p-8">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">{project.category_display}</p>
                   <StatusBadge label={project.status_display} />
                 </div>
 
-                <h3 className="mt-4 text-3xl font-semibold tracking-tight">{project.title}</h3>
+                <h3 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">{project.title}</h3>
                 <p className="mt-4 text-base leading-7 text-[var(--muted)]">{project.summary}</p>
                 <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{project.description}</p>
 

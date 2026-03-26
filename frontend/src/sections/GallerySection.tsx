@@ -37,7 +37,7 @@ export function GallerySection({
               className="glass-card overflow-hidden rounded-[2rem]"
             >
               {item.image_source ? (
-                <img src={item.image_source} alt={item.alt_text || item.title} className="h-72 w-full object-cover" />
+                <img src={item.image_source} alt={item.alt_text || item.title} className="h-56 w-full object-cover sm:h-72" />
               ) : null}
               <figcaption className="p-6">
                 <p className="text-sm uppercase tracking-[0.16em] text-[var(--muted)]">{item.category || 'Gallery'}</p>

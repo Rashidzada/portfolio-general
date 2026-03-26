@@ -35,7 +35,7 @@ export function TestimonialsSection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ delay: index * 0.05 }}
-              className="glass-card rounded-[2rem] p-8"
+              className="glass-card rounded-[2rem] p-6 sm:p-8"
             >
               <div className="flex items-center gap-4">
                 {testimonial.photo_source ? (

@@ -35,10 +35,10 @@ export function CertificatesSection({
               className="glass-card overflow-hidden rounded-[2rem]"
             >
               {certificate.image_source ? (
-                <img src={certificate.image_source} alt={certificate.title} className="h-64 w-full object-cover" />
+                <img src={certificate.image_source} alt={certificate.title} className="h-56 w-full object-cover sm:h-64" />
               ) : null}
 
-              <div className="p-8">
+              <div className="p-6 sm:p-8">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <p className="text-sm uppercase tracking-[0.16em] text-[var(--muted)]">{certificate.issuer}</p>
                   <span className="rounded-full border border-[var(--line)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">

@@ -30,7 +30,7 @@ export function SkillsSection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ delay: index * 0.06 }}
-              className="glass-card rounded-[2rem] p-8"
+              className="glass-card rounded-[2rem] p-6 sm:p-8"
             >
               <div className="flex items-center justify-between gap-4">
                 <div>

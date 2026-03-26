@@ -64,10 +64,10 @@ export function ContactSection({
 
         <div className="mt-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
           <aside className="grid gap-6">
-            <div className="glass-card rounded-[2rem] p-8">
+            <div className="glass-card rounded-[2rem] p-6 sm:p-8">
               <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Direct Contact</p>
               <div className="mt-6 grid gap-4 text-sm text-[var(--muted)]">
-                <p>Email: {siteSettings?.contact_email || profile?.primary_email || 'hello@example.com'}</p>
+                <p className="break-words">Email: {siteSettings?.contact_email || profile?.primary_email || 'hello@example.com'}</p>
                 <p>Phone: {siteSettings?.contact_phone || profile?.phone || 'Add your number'}</p>
                 <p>Location: {siteSettings?.contact_location || profile?.location || 'Add your location'}</p>
                 <p>Hours: {siteSettings?.office_hours || 'Mon to Sat'}</p>
@@ -98,7 +98,7 @@ export function ContactSection({
               </div>
             </div>
 
-            <div className="glass-card rounded-[2rem] p-8">
+            <div className="glass-card rounded-[2rem] p-6 sm:p-8">
               <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Upload or Link Support</p>
               <p className="mt-4 text-sm leading-7 text-[var(--muted)]">
                 {content?.extra_text ||
@@ -107,7 +107,7 @@ export function ContactSection({
             </div>
           </aside>
 
-          <form onSubmit={handleSubmit} className="glass-card rounded-[2rem] p-8">
+          <form onSubmit={handleSubmit} className="glass-card rounded-[2rem] p-6 sm:p-8">
             <div className="grid gap-5 md:grid-cols-2">
               <input
                 value={formData.name}

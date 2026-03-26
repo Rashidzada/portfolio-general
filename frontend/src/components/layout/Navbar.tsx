@@ -27,16 +27,16 @@ export function Navbar({
 
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[var(--background-soft)]/90 backdrop-blur-xl">
-      <div className="shell flex items-center justify-between py-4">
-        <a href="#top" className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--accent)] text-sm font-semibold text-white">
+      <div className="shell flex items-center gap-3 py-3 sm:py-4">
+        <a href="#top" className="flex min-w-0 flex-1 items-center gap-3">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--accent)] text-sm font-semibold text-white">
             {profile?.full_name?.slice(0, 2).toUpperCase() || 'DP'}
           </div>
-          <div>
-            <p className="font-display text-sm font-semibold tracking-[0.16em] text-[var(--muted)] uppercase">
+          <div className="min-w-0">
+            <p className="truncate font-display text-[0.7rem] font-semibold tracking-[0.16em] text-[var(--muted)] uppercase sm:text-sm">
               Software Portfolio
             </p>
-            <p className="text-sm font-medium">{profile?.full_name || 'Developer Portfolio'}</p>
+            <p className="truncate text-sm font-medium">{profile?.full_name || 'Developer Portfolio'}</p>
           </div>
         </a>
 
@@ -64,7 +64,7 @@ export function Navbar({
 
         <button
           type="button"
-          className="glass-card inline-flex rounded-full p-3 lg:hidden"
+          className="glass-card inline-flex shrink-0 rounded-full p-3 lg:hidden"
           onClick={() => setIsOpen((open) => !open)}
           aria-label="Toggle navigation"
         >
@@ -74,7 +74,7 @@ export function Navbar({
 
       {isOpen ? (
         <div className="shell border-t border-[var(--line)] py-4 lg:hidden">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 pb-1">
             {sectionLinks.map((link) => (
               <a key={link.href} href={link.href} onClick={() => setIsOpen(false)} className="text-sm text-[var(--muted)]">
                 {link.label}
